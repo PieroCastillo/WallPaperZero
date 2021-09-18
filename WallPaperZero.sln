@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7D2C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WallpaperZero.Core.Direct2DSample", "Samples\WallpaperZero.Core.Direct2DSample\WallpaperZero.Core.Direct2DSample.csproj", "{837A9D8C-6356-44CC-A460-357D15F04A91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WallPaperZero.Service", "WallPaperZero.Service\WallPaperZero.Service.csproj", "{7343D226-0918-49E0-A14E-84A6D3276B6B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WallPapers", "WallPapers", "{3A6BD934-897A-4707-AA5D-37C03CFC20E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageWallPaper", "WallPapers\ImageWallPaper\ImageWallPaper.csproj", "{30A45D67-F39E-461F-8277-6626462C2AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidColorsWallPaper", "WallPapers\SolidColorsWallPaper\SolidColorsWallPaper.csproj", "{8D04509D-4EA1-4930-96C3-5045E32E172C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WallPaperZero.BasicExecuting", "WallPaperZero.BasicExecuting\WallPaperZero.BasicExecuting.csproj", "{1462FABA-3B71-4E57-B20C-D18C34B60ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +31,18 @@ Global
 		{837A9D8C-6356-44CC-A460-357D15F04A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{837A9D8C-6356-44CC-A460-357D15F04A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{837A9D8C-6356-44CC-A460-357D15F04A91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7343D226-0918-49E0-A14E-84A6D3276B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7343D226-0918-49E0-A14E-84A6D3276B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7343D226-0918-49E0-A14E-84A6D3276B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7343D226-0918-49E0-A14E-84A6D3276B6B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30A45D67-F39E-461F-8277-6626462C2AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30A45D67-F39E-461F-8277-6626462C2AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30A45D67-F39E-461F-8277-6626462C2AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30A45D67-F39E-461F-8277-6626462C2AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D04509D-4EA1-4930-96C3-5045E32E172C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D04509D-4EA1-4930-96C3-5045E32E172C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D04509D-4EA1-4930-96C3-5045E32E172C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D04509D-4EA1-4930-96C3-5045E32E172C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1462FABA-3B71-4E57-B20C-D18C34B60ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1462FABA-3B71-4E57-B20C-D18C34B60ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1462FABA-3B71-4E57-B20C-D18C34B60ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1462FABA-3B71-4E57-B20C-D18C34B60ACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{837A9D8C-6356-44CC-A460-357D15F04A91} = {7D2CB9FF-7AC7-4D84-9646-9B4241AFF3C9}
 		{30A45D67-F39E-461F-8277-6626462C2AE4} = {3A6BD934-897A-4707-AA5D-37C03CFC20E7}
+		{8D04509D-4EA1-4930-96C3-5045E32E172C} = {3A6BD934-897A-4707-AA5D-37C03CFC20E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A7D4F05-0F3B-4112-97A7-7745873CF834}
