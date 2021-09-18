@@ -88,6 +88,5 @@ namespace WallPaperZero.Core
                 return true;
             }), IntPtr.Zero);
         }
-
     }
 }
