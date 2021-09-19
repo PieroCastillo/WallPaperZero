@@ -11,7 +11,8 @@ namespace WallPaperZero.BasicExecuting
 
             string solidColorWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\SolidColorsWallPaper\bin\Debug\net5.0\SolidColorsWallPaper.dll";
             string imageWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\ImageWallPaper\bin\Debug\net5.0\ImageWallPaper.dll";
-            WallPaperLoader.LoadAndRun(imageWallPaperPath);
+            string basicAnimationWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\BasicAnimationWallPaper\bin\Debug\net5.0\BasicAnimationWallPaper.dll";
+            WallPaperLoader.LoadAndRun(basicAnimationWallPaperPath);
         }
     }
 }

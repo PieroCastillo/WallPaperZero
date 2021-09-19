@@ -18,7 +18,7 @@ namespace ImageWallPaper
 
         public override void Load(ID2D1Factory factory, ID2D1HwndRenderTarget renderTarget)
         {
-            var imgStream = Assembly.GetAssembly(this.GetType()).GetManifestResourceStream("ImageWallPaper.Assets.strelitzia_wallpaper.jpg");
+            var imgStream = Assembly.GetAssembly(GetType()).GetManifestResourceStream("ImageWallPaper.Assets.strelitzia_wallpaper.jpg");
             image = renderTarget.LoadBitmapFromStream(imgStream);
         }
 
@@ -27,7 +27,7 @@ namespace ImageWallPaper
             renderTarget.BeginDraw();
             var rect = new RawRectF(0, 0, renderTarget.Size.Width, renderTarget.Size.Height);
             var srcRect = new RectangleF(new(0, 0), image.PixelSize);
-            renderTarget.DrawBitmap(image, rect, 1f, BitmapInterpolationMode.NearestNeighbor, srcRect);
+            renderTarget.DrawBitmap(image, rect, 1f, BitmapInterpolationMode.Linear, srcRect);
             renderTarget.EndDraw();
         }
     }
