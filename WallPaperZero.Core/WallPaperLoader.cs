@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DrawBehindDesktopIcons;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -47,11 +49,16 @@ namespace WallPaperZero.Core
                 return WallPaperLoadingResult.AssemblyDoesNotConstainsAnyWallPaper;
             }
 
+
+            var desktopPointer = Utils.GetDesktopWorkerPointer();
             var factory = D2D1.D2D1CreateFactory<ID2D1Factory>(FactoryType.MultiThreaded);
+
+            W32.GetClientRect(desktopPointer, out RECT rect);
+
             HwndRenderTargetProperties wtp = new()
             {
-                Hwnd = Utils.GetDesktopWorkerPointer(),
-                PixelSize = new(300, 300),
+                Hwnd = desktopPointer,
+                PixelSize = new Size(rect.Width, rect.Height),
                 PresentOptions = PresentOptions.Immediately
             };
             var renderTarget = factory.CreateHwndRenderTarget(new RenderTargetProperties(), wtp);

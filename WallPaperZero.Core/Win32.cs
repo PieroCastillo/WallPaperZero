@@ -462,24 +462,6 @@ namespace DrawBehindDesktopIcons
             SMTO_ERRORONEXIT = 0x20
         }
 
-        [DllImport("gdi32.dll", EntryPoint = "BitBlt")]
-        public static extern bool BitBlt(IntPtr hdcDest, int xDest, int yDest, int wDest, int hDest, IntPtr hdcSource, int xSrc, int ySrc, int RasterOp);
-
-        [DllImport("gdi32.dll", EntryPoint = "CreateCompatibleBitmap")]
-        public static extern IntPtr CreateCompatibleBitmap(IntPtr hdc, int nWidth, int nHeight);
-
-        [DllImport("gdi32.dll", EntryPoint = "CreateCompatibleDC")]
-        public static extern IntPtr CreateCompatibleDC(IntPtr hdc);
-
-        [DllImport("gdi32.dll", EntryPoint = "DeleteDC")]
-        public static extern IntPtr DeleteDC(IntPtr hDc);
-
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        public static extern IntPtr DeleteObject(IntPtr hDc);
-
-        [DllImport("dwmapi.dll")]
-        public static extern int DwmEnableBlurBehindWindow(IntPtr hWnd, ref BbStruct blurBehind);
-
         [DllImport("DwmApi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref Margins pMarInset);
 
@@ -596,6 +578,9 @@ namespace DrawBehindDesktopIcons
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern Int32 SystemParametersInfo(UInt32 action, UInt32 uParam, string vParam, UInt32 winIni);
 
+        [DllImport("user32.dll")]
+        public static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
+
         [StructLayout(LayoutKind.Sequential)]
         public struct BbStruct //Blur Behind Structure
         {
@@ -626,106 +611,7 @@ namespace DrawBehindDesktopIcons
             public int cyBottomHeight;   // height of bottom border that retains its size
         };
 
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
-        {
-            public int Left, Top, Right, Bottom;
 
-            public RECT(int left, int top, int right, int bottom)
-            {
-                Left = left;
-                Top = top;
-                Right = right;
-                Bottom = bottom;
-            }
-
-            public RECT(System.Drawing.Rectangle r)
-                : this(r.Left, r.Top, r.Right, r.Bottom)
-            {
-            }
-
-            public int X
-            {
-                get { return Left; }
-                set { Right -= (Left - value); Left = value; }
-            }
-
-            public int Y
-            {
-                get { return Top; }
-                set { Bottom -= (Top - value); Top = value; }
-            }
-
-            public int Height
-            {
-                get { return Bottom - Top; }
-                set { Bottom = value + Top; }
-            }
-
-            public int Width
-            {
-                get { return Right - Left; }
-                set { Right = value + Left; }
-            }
-
-            public System.Drawing.Point Location
-            {
-                get { return new System.Drawing.Point(Left, Top); }
-                set { X = value.X; Y = value.Y; }
-            }
-
-            public System.Drawing.Size Size
-            {
-                get { return new System.Drawing.Size(Width, Height); }
-                set { Width = value.Width; Height = value.Height; }
-            }
-
-            public static implicit operator System.Drawing.Rectangle(RECT r)
-            {
-                return new System.Drawing.Rectangle(r.Left, r.Top, r.Width, r.Height);
-            }
-
-            public static implicit operator RECT(System.Drawing.Rectangle r)
-            {
-                return new RECT(r);
-            }
-
-            public static bool operator ==(RECT r1, RECT r2)
-            {
-                return r1.Equals(r2);
-            }
-
-            public static bool operator !=(RECT r1, RECT r2)
-            {
-                return !r1.Equals(r2);
-            }
-
-            public bool Equals(RECT r)
-            {
-                return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is RECT)
-                    return Equals((RECT)obj);
-                else if (obj is System.Drawing.Rectangle)
-                    return Equals(new RECT((System.Drawing.Rectangle)obj));
-                return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return ((System.Drawing.Rectangle)this).GetHashCode();
-            }
-
-            public override string ToString()
-            {
-                return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
-            }
-
-
-        }
 
         [DllImport("user32.dll")]
         public static extern int GetSystemMetrics(SystemMetric smIndex);
@@ -833,4 +719,99 @@ namespace DrawBehindDesktopIcons
 
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RECT
+    {
+        public int Left, Top, Right, Bottom;
+
+        public RECT(int left, int top, int right, int bottom)
+        {
+            Left = left;
+            Top = top;
+            Right = right;
+            Bottom = bottom;
+        }
+
+        public RECT(System.Drawing.Rectangle r) : this(r.Left, r.Top, r.Right, r.Bottom) { }
+
+        public int X
+        {
+            get { return Left; }
+            set { Right -= (Left - value); Left = value; }
+        }
+
+        public int Y
+        {
+            get { return Top; }
+            set { Bottom -= (Top - value); Top = value; }
+        }
+
+        public int Height
+        {
+            get { return Bottom - Top; }
+            set { Bottom = value + Top; }
+        }
+
+        public int Width
+        {
+            get { return Right - Left; }
+            set { Right = value + Left; }
+        }
+
+        public System.Drawing.Point Location
+        {
+            get { return new System.Drawing.Point(Left, Top); }
+            set { X = value.X; Y = value.Y; }
+        }
+
+        public System.Drawing.Size Size
+        {
+            get { return new System.Drawing.Size(Width, Height); }
+            set { Width = value.Width; Height = value.Height; }
+        }
+
+        public static implicit operator System.Drawing.Rectangle(RECT r)
+        {
+            return new System.Drawing.Rectangle(r.Left, r.Top, r.Width, r.Height);
+        }
+
+        public static implicit operator RECT(System.Drawing.Rectangle r)
+        {
+            return new RECT(r);
+        }
+
+        public static bool operator ==(RECT r1, RECT r2)
+        {
+            return r1.Equals(r2);
+        }
+
+        public static bool operator !=(RECT r1, RECT r2)
+        {
+            return !r1.Equals(r2);
+        }
+
+        public bool Equals(RECT r)
+        {
+            return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is RECT)
+                return Equals((RECT)obj);
+            else if (obj is System.Drawing.Rectangle)
+                return Equals(new RECT((System.Drawing.Rectangle)obj));
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return ((System.Drawing.Rectangle)this).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
+        }
+    }
 }
