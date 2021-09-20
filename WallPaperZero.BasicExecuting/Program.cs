@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using WallPaperZero.Core;
 
 namespace WallPaperZero.BasicExecuting
@@ -8,11 +9,10 @@ namespace WallPaperZero.BasicExecuting
         static void Main(string[] args)
         {
             //loads a dll with a WallPaper (should have an attribute)
-
-            string solidColorWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\SolidColorsWallPaper\bin\Debug\net5.0\SolidColorsWallPaper.dll";
-            string imageWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\ImageWallPaper\bin\Debug\net5.0\ImageWallPaper.dll";
-            string basicAnimationWallPaperPath = @"D:\My Projects\WallPaperZero\WallPapers\BasicAnimationWallPaper\bin\Debug\net5.0\BasicAnimationWallPaper.dll";
-            WallPaperLoader.LoadAndRun(basicAnimationWallPaperPath);
+            string solidColorWallPaperPath = Path.GetFullPath(@"..\..\..\..\WallPapers\SolidColorsWallPaper\bin\Debug\net5.0\SolidColorsWallPaper.dll");
+            string imageWallPaperPath = Path.GetFullPath(@"..\..\..\..\\WallPapers\ImageWallPaper\bin\Debug\net5.0\ImageWallPaper.dll");
+            string basicAnimationWallPaperPath = Path.GetFullPath(@"..\..\..\..\WallPapers\BasicAnimationWallPaper\bin\Debug\net5.0\BasicAnimationWallPaper.dll");
+            WallPaperLoader.LoadAndRun(solidColorWallPaperPath);
         }
     }
 }

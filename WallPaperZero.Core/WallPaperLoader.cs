@@ -74,7 +74,7 @@ namespace WallPaperZero.Core
                 while (ShouldContinue)
                 {
                     DeltaTime = sw.ElapsedMilliseconds;
-                    Console.WriteLine($"app time: {DeltaTime}");
+                    //Console.WriteLine($"app time: {DeltaTime}");
                     wallpapers[0].Render(renderTarget, DeltaTime);
                     Thread.Sleep(10);
 
@@ -82,7 +82,7 @@ namespace WallPaperZero.Core
                     {
                         DeltaTime = 0;
                         sw.Restart();
-                        Console.WriteLine("time elapsed");
+                        //Console.WriteLine("time elapsed");
                     }
                 }
             }));

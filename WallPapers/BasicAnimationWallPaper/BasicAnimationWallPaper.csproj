@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\WallPaperZero.Core\WallPaperZero.Core.csproj" />
   </ItemGroup>
 
